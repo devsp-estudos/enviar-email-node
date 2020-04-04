@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar email gmail</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <input id="logNormal" type="radio" name="btn" checked>
+        <input id="logOauth" type="radio" name="btn">
+
+        <header>
+            <h1>Envie um e-mail</h1>
+
+            <div class="flex">
+                <label for="logNormal" class="button">Login Normal</label>
+                <label for="logOauth" class="button">Login Oauth</label>
+            </div>
+        </header>
+
+        <!-- ------------------ forms ------------------ -->
+
+        <div id="loginNormal" class="none">
+            <div class="flex">
+                <input id='email' placeholder="Email" type="text">
+                <input id='senha' placeholder="Senha" type="text">
+            </div>
+        </div>
+
+        <div id="loginOauth" class="none">
+            <div class="flex">
+                <input id='emailOauth' placeholder="Email" type="text">
+                <input id='clientId' placeholder="clientId" type="text">
+            </div>
+
+            <div class="flex">
+                <input id='clientSecret' placeholder="clientSecret" type="text">
+                <input id='refreshToken' placeholder="refreshToken" type="text">
+            </div>
+        </div>
+
+        <!-- ------------------ mensagens ------------------ -->
+
+        <div class="msg">
+            <div id="msgNormal" class="none">
+                <p>
+                    Para conseguir fazer o envio, é necessario habilitar a função de Acesso a app menos seguro do
+                    google.
+                    <a href="https://myaccount.google.com/lesssecureapps" target="_blank">Link para habilitar</a>
+                </p>
+            </div>
+
+            <div id="msgOauth" class="none">
+                <p>
+                    Para conseguir gerar as chaves necessarias, apenas acompanhe esse
+                    <a href="https://medium.com/@nickroach_50526/sending-emails-with-node-js-using-smtp-gmail-and-oauth2-316fe9c790a1"
+                        target="_blank">Artigo</a>
+                    .
+                </p>
+            </div>
+        </div>
+
+        <!-- ------------------ e-mail a ser enviado ------------------ -->
+
+        <h3>Informações do e-mail a ser enviado:</h3>
+
+        <input id="para" placeholder="Para" type="text">
+
+        <input id="assunto" placeholder="Assunto" type="text">
+
+        <textarea id="corpoEmail" placeholder="Corpo HTML" cols="30" rows="10"></textarea>
+
+        <div class="container-btns">
+            <div class="button cor-btn-br">Limpar</div>
+            <div class="button cor-btn-azul">Enviar</div>
+        </div>
+    </main>
+</body>
+
+</html>
