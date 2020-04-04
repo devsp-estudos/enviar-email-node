@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: whitesmoke;
+    color: #25282b;
+}
+
+.flex {
+    display: flex;
+}
+
+.none {
+    display: none;
+}
+
+/* ------------------------- main ------------------------- */
+
+main {
+    background-color: white;
+    max-width: 700px;
+    margin: 20px;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0px 0px 28px 2px rgba(176, 176, 176, 0.62);
+}
+
+/* ------------------------- header ------------------------- */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px 20px;
+}
+
+.button {
+    padding: 10px 14px;
+    margin-left: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 600ms;
+}
+
+input[type="radio"] {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+}
+
+/* selecionar o botão no header */
+
+#logNormal:checked~header div label[for="logNormal"] {
+    background-color: #9cc1f8;
+    box-shadow: 0px 4px 16px -7px rgb(74, 172, 252);
+    color: white;
+}
+
+#logOauth:checked~header div label[for="logOauth"] {
+    background-color: #9cc1f8;
+    box-shadow: 0px 4px 16px -7px rgb(74, 172, 252);
+    color: white;
+}
+
+/* selecionar o form  */
+
+#logNormal:checked~#loginNormal {
+    display: block;
+}
+
+#logOauth:checked~#loginOauth {
+    display: block;
+}
+
+/* selecionar a mensagem */
+
+#logNormal:checked~.msg #msgNormal {
+    display: block;
+}
+
+#logOauth:checked~.msg #msgOauth {
+    display: block;
+}
+
+/* ------------------------- corpo inputs ------------------------- */
+
+.msg {
+    margin: 10px;
+    color: #404549;
+}
+
+.container-titulo-email {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+h3 {
+    margin: 16px 10px 10px;
+}
+
+.btn-email {
+    margin-left: 16px;
+    border-radius: 4px;
+    /* padding: 3px; */
+    outline: none;
+}
+
+input, textarea {
+    width: calc(100% - 8px);
+    margin: 4px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 7px;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgb(209, 209, 209);
+    outline: none;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.container-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cor-btn-azul {
+    background-color: #77a9f3;
+    box-shadow: 0px 2px 12px 0px #81acec;
+    color: white;
+    outline: none;
+    margin: 0 8px;
+}
+
+.cor-btn-br {
+    background-color: white;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.301);
+    color: #404549;
+    outline: none;
+    margin: 0 8px;
+}
