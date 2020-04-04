@@ -6,9 +6,11 @@ const { user, ClientID, ClientSecret, RefreshToken, RedirectURL, to } = require(
 
 
 // Rotas
-app.get('/', (req, res) => res.send('Hello World!'))
+app.use(express.static(`${__dirname}/frontend`))
 
-app.get('/enviar', (req, res) => {
+app.use('/', (req, res) => res.sendFile(__dirname + '/frontend/index.html'))
+
+app.post('/enviar', (req, res) => {
 
     const auth = { user, ClientID, ClientSecret, RefreshToken, RedirectURL }
 
@@ -18,7 +20,7 @@ app.get('/enviar', (req, res) => {
     const email = { para: to, assunto, html }
 
     const callback = (msg) => res.send(msg)
-    
+
     enviarOauth(auth, email, callback)
 })
 
