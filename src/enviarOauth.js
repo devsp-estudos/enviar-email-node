@@ -3,7 +3,7 @@ const { google } = require("googleapis")
 const OAuth2 = google.auth.OAuth2
 
 
-function enviarOauth(auth, email) {
+function enviarOauth(auth, email, callback) {
 
     const { user, ClientID, ClientSecret, RefreshToken, RedirectURL } = auth
 
@@ -32,7 +32,7 @@ function enviarOauth(auth, email) {
     }
 
     smtpTransport.sendMail(mailOptions, (error, response) => {
-        error ? console.log(error) : console.log(response)
+        error ? callback(error) : callback(response)
         smtpTransport.close()
     })
 }
