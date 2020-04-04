@@ -5,7 +5,9 @@ const OAuth2 = google.auth.OAuth2
 
 function enviarOauth(auth, email, callback) {
 
-    const { user, ClientID, ClientSecret, RefreshToken, RedirectURL } = auth
+    const { user, ClientID, ClientSecret, RefreshToken } = auth
+
+    const RedirectURL = 'https://developers.google.com/oauthplayground'
 
     const oauth2Client = new OAuth2(ClientID, ClientSecret, RedirectURL)
 
