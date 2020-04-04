@@ -25,5 +25,6 @@ app.post('/enviar', (req, res) => {
 })
 
 
+// servindo
 const port = 3002
 app.listen(port, () => console.log(`Rodando na porta: ${port}`))
