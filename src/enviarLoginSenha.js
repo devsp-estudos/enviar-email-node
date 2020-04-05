@@ -1,28 +1,30 @@
 const nodemailer = require('nodemailer')
 
 
-function enviarLoginSenha(auth, email) {
+function enviarLoginSenha(auth, email, callback) {
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: auth.user,
-            pass: auth.pass
+            user: auth.email,
+            pass: auth.senha
         }
     })
 
     const mailOptions = {
-        from: auth.user,
+        from: auth.email,
         to: email.para,
         subject: email.assunto,
-        html: email.html
+        html: email.corpoEmail
     }
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            res.send(error)
+            console.log(error)
+            callback({ res: false })
         } else {
-            res.send('Email enviado: ' + info.response)
+            console.log(info)
+            callback({ res: true })
         }
     })
 }

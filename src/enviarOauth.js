@@ -3,40 +3,52 @@ const { google } = require("googleapis")
 const OAuth2 = google.auth.OAuth2
 
 
-function enviarOauth(auth, email, callback) {
+function enviarOauth(objAuth, objEmail, callback) {
 
-    const { user, ClientID, ClientSecret, RefreshToken } = auth
+    try {
+        const { email, clientID, clientSecret, refreshToken } = objAuth
 
-    const RedirectURL = 'https://developers.google.com/oauthplayground'
+        const redirectURL = 'https://developers.google.com/oauthplayground'
 
-    const oauth2Client = new OAuth2(ClientID, ClientSecret, RedirectURL)
+        const oauth2Client = new OAuth2(clientID, clientSecret, redirectURL)
 
-    oauth2Client.setCredentials({ refresh_token: RefreshToken })
-    const accessToken = oauth2Client.getAccessToken()
+        oauth2Client.setCredentials({ refresh_token: refreshToken })
+        const accessToken = oauth2Client.getAccessToken()
 
-    const smtpTransport = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            type: "OAuth2",
-            user: user,
-            clientId: ClientID,
-            clientSecret: ClientSecret,
-            refreshToken: RefreshToken,
-            accessToken: accessToken
+        const smtpTransport = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "OAuth2",
+                user: email,
+                clientId: clientID,
+                clientSecret: clientSecret,
+                refreshToken: refreshToken,
+                accessToken: accessToken
+            }
+        })
+
+        const mailOptions = {
+            from: email,
+            to: objEmail.para,
+            subject: objEmail.assunto,
+            html: objEmail.corpoEmail
         }
-    })
 
-    const mailOptions = {
-        from: user,
-        to: email.para,
-        subject: email.assunto,
-        html: email.html
+        smtpTransport.sendMail(mailOptions, (error, response) => {
+            if (error) {
+                console.log(error)
+                callback({ res: false })
+            } else {
+                console.log(response)
+                callback({ res: true })
+            }
+
+            smtpTransport.close()
+        })
+    } catch (error) {
+        console.log('Entrou no catch: ')
+        console.log(error)
     }
-
-    smtpTransport.sendMail(mailOptions, (error, response) => {
-        error ? callback(error) : callback(response)
-        smtpTransport.close()
-    })
 }
 
 module.exports = enviarOauth
