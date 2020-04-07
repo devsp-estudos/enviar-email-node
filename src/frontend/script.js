@@ -38,6 +38,16 @@ function gerarObjEmail() {
     }
 }
 
+function gerarObjDeEnvio() {
+    const checkOauth = document.getElementById('logOauth').checked
+    const nomeLogin = checkOauth ? 'Oauth' : 'normal'
+
+    const objAuth = checkOauth ? gerarObjOauth() : gerarObjNormal()
+    const objEmail = gerarObjEmail()
+
+    return { nomeLogin, objAuth, objEmail }
+}
+
 
 // ------------------------ FUNCOES ------------------------ 
 
@@ -68,25 +78,18 @@ async function post(url = '', data = {}) {
 }
 
 function enviar() {
-    const checkOauth = document.getElementById('logOauth').checked
-    const nomeLogin = checkOauth ? 'Oauth' : 'normal'
 
-    const objAuth = checkOauth ? gerarObjOauth() : gerarObjNormal()
-    const objEmail = gerarObjEmail()
+    const objDeEnvio = gerarObjDeEnvio()
 
-    const objEnviar = { nomeLogin, objAuth, objEmail }
-
-    const validar = validarObj(objEnviar)
+    const validar = validarObj(objDeEnvio)
 
     if (!validar) {
         alert('Preencha todos os Inputs com *')
         return
     }
 
-    post('http://localhost:3002/enviar', objEnviar)
+    post('http://localhost:3002/enviar', objDeEnvio)
         .then((data) => {
-            console.log(data)
-
             if (data && data.res) alert('E-mail Enviado.')
             else alert('Falha ao enviar o E-mail.')
         })
