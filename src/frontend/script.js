@@ -5,7 +5,7 @@ const assunto = document.getElementById('assunto')
 const corpoEmail = document.getElementById('corpoEmail')
 
 
-// ------------------------ FUNCOES ------------------------ 
+// ------------------------ GERAR OBJS ------------------------ 
 
 function limpar() {
     para.value = ''
@@ -39,6 +39,19 @@ function gerarObjEmail() {
 }
 
 
+// ------------------------ FUNCOES ------------------------ 
+
+function validarObj(obj) {
+    const { objAuth, objEmail } = obj
+
+    const array = Object.keys(objAuth).map(key => (objAuth[key] === '') ? true : false)
+    let authEmBranco = array.includes(true)
+
+    const { para, assunto } = objEmail
+    const emailEmBranco = (para === '' || assunto === '') ? true : false
+
+    return (!authEmBranco && !emailEmBranco) ? true : false
+}
 
 async function post(url = '', data = {}) {
     try {
@@ -62,6 +75,13 @@ function enviar() {
     const objEmail = gerarObjEmail()
 
     const objEnviar = { nomeLogin, objAuth, objEmail }
+
+    const validar = validarObj(objEnviar)
+
+    if (!validar) {
+        alert('Preencha todos os Inputs com *')
+        return
+    }
 
     post('http://localhost:3002/enviar', objEnviar)
         .then((data) => {
