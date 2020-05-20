@@ -35,7 +35,7 @@ Com essas duas maneiras de enviar e-mail criadas, resolvi criar um projeto apart
 * [JS](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 * [Node.js](https://nodejs.org/en/)
 
-**Dependência**
+**Dependências**
 
 * [express](https://expressjs.com/)
 * [googleapis](https://www.npmjs.com/package/googleapis)
