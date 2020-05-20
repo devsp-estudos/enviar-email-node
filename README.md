@@ -52,7 +52,7 @@ Com essas duas maneiras de enviar e-mail criadas, resolvi criar um projeto apart
 * Primeiro passo, clone o projeto em sua maquina
 * Abra a pasta do projeto no terminal
 * Instale as dependências com o comando `npm i` 
-* Inicie o servidro com o comando `npm start` 
+* Inicie o servidor com o comando `npm start` 
 * Abre uma aba no navegar e navegue para http://localhost:3002/
 
 ## :keyboard: Resultado
